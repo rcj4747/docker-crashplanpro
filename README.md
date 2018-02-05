@@ -14,6 +14,16 @@ To run this container, please use this command:
            -v "/volume1":"/volume1":rw \
                rcj4747/crashplanpro
 
+## Configuring remote management
+
+Get the ui_info from the container:
+
+```
+docker exec CrashPlan cat /var/lib/crashplan/.ui_info ; echo
+```
+
+Edit the local /var/lib/crashplan/.ui_info and run CrashPlanDesktop.  Substitute the 0.0.0.0 for the IP of the docker host.
+
 ###Some supported variables:
 
 ####Variable TZ: 
