@@ -24,14 +24,12 @@ cd /files && find . -type f -exec cp -f --parents '{}' / \;
 
 # Repositories
 cat <<'EOT' > /etc/apt/sources.list
-deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse 
-deb http://us.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse 
-deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe multiverse 
-deb http://us.archive.ubuntu.com/ubuntu/ xenial-proposed main restricted universe multiverse 
-deb http://us.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse 
+deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe multiverse
+#deb http://us.archive.ubuntu.com/ubuntu/ xenial-proposed main restricted universe multiverse
+#deb http://us.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
 EOT
-
-# curl -skL https://repogen.simplylinux.ch/txt/xenial/sources_bbf3012a51a23b31db429017a1859e99ee11fc4c.txt -o /etc/apt/sources.list
 
 # Install Dependencies
 apt-get update -qq
