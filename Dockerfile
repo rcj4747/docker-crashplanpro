@@ -1,5 +1,5 @@
 FROM phusion/baseimage:latest
-MAINTAINER gfjardim <gfjardim@gmail.com>
+MAINTAINER rcj4747
 
 #########################################
 ##        ENVIRONMENTAL CONFIG         ##
