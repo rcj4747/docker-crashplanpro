@@ -22,5 +22,7 @@ RUN sync && /bin/bash /files/tmp/install.sh
 #########################################
 ##         EXPORTS AND VOLUMES         ##
 #########################################
+# /data is for incoming backups
+# /config is for client configuration
 VOLUME /data /config
 EXPOSE 4243 4242 4280
