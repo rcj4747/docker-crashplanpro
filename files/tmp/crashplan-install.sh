@@ -3,7 +3,6 @@
 # Install Crashplan
 TARGETDIR=/usr/local/crashplan
 BINSDIR="/usr/local/bin"
-CACHEDIR=/config/cache
 MANIFESTDIR=/backup
 INITDIR=/etc/init.d
 RUNLVLDIR=/etc/rc2.d
@@ -14,28 +13,40 @@ curl -L "https://web-lbm-msp.crashplanpro.com/client/installers/CrashPlanPRO_${C
     tar --extract --gzip --strip=1 --directory=/tmp/crashplan
 # curl -L http://192.168.0.100:88/CrashPlan_${CP_VERSION}_Linux.tgz | tar -xz --strip=1 -C /tmp/crashplan
 
-cd /tmp/crashplan
+pushd /tmp/crashplan
 
-# Adding some defaults
-echo "TARGETDIR=${TARGETDIR}"     >> /tmp/crashplan/install.vars
-echo "BINSDIR=${BINSDIR}"         >> /tmp/crashplan/install.vars
-echo "MANIFESTDIR=${MANIFESTDIR}" >> /tmp/crashplan/install.vars
-echo "INITDIR=${INITDIR}"         >> /tmp/crashplan/install.vars
-echo "RUNLVLDIR=${RUNLVLDIR}"     >> /tmp/crashplan/install.vars
+# Set defaults (These should cover all values requested by install.sh
+# within the "INTERIVEW" section)
+cat >> install.vars <<EOF
+TARGETDIR=${TARGETDIR}
+BINSDIR=${BINSDIR}
+MANIFESTDIR=${MANIFESTDIR}
+INITDIR=${INITDIR}
+RUNLVLDIR=${RUNLVLDIR}
+EOF
 # echo "JRE_X64_DOWNLOAD_URL=http://192.168.0.100:88/jre-linux-x64-1.8.0_72.tgz" >> install.vars
 
 # Creating directories
 mkdir -p /usr/local/crashplan/bin /backup
+mkdir -p ${TARGETDIR}
+mkdir -p ${BINSDIR}
+mkdir -p ${MANIFESTDIR}
 
-# Skipping inverview
+# CACHEDIR in etc/my_init.d/01_config.sh is the 'cachePath' in my.service.xml
+CACHEDIR=/config/cache
+mkdir -p ${CACHEDIR}
+
+# Skip inverview and read in our defaults
+# $SCRIPT_DIR is defined in install.sh and is not meant to be expanded here
 sed -i -e '/INTERVIEW=0/a source \"${SCRIPT_DIR}/install.vars\"' \
-       -e 's/INTERVIEW=0/INTERVIEW=1/g' /tmp/crashplan/install.sh
+       -e 's/INTERVIEW=0/INTERVIEW=1/g' install.sh
 
 # Install
-yes "" | /tmp/crashplan/install.sh
+yes "" | ./install.sh
 
 # Remove installation files
-cd / && rm -rf /tmp/crashplan
+popd
+rm -rf /tmp/crashplan
 
 # Add service to init
 cat <<'EOT' > ${INITDIR}/crashplan
