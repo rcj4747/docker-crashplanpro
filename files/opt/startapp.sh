@@ -14,6 +14,7 @@ until [ "$(/etc/init.d/crashplan status)" == "running" ]; do
   sleep 1
   let i+=1
   if [ $i -gt 10 ]; then
+    echo "startapp.sh stopped waiting for 'running' state'" > /config/log/desktop_output.log
     break
   fi
 done
