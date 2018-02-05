@@ -11,7 +11,8 @@ To run this container, please use this command:
            -p 4280:4280 \
            -v "/path/to/your/crashplan/config":"/config":rw \
            -v "/path/to/your/manifest/dir":"/backup":rw \
-               gfjardim/crashplan
+           -v "/volume1":"/volume1":rw \
+               rcj4747/crashplanpro
 
 ###Some supported variables:
 
@@ -52,4 +53,4 @@ This port exposes a noVNC instance with the CrashPlan Desktop App.
 
 ```-p 4280:4280```
 
-Then navigate to ```http://yourip:4280/vnc.html?autoconnect=true&host=192.168.0.100&port=4280``` to access the graphic user interface.
+Then navigate to ```http://localhost:4280/vnc.html?autoconnect=true&host=0.0.0.0&port=4280``` to access the graphic user interface.
