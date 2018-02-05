@@ -60,12 +60,3 @@ chmod +x /usr/local/crashplan/bin/restartLinux.sh
 
 # Move old logs to /config/log/
 find /config -maxdepth 1 -type f -iname "*.log" -exec mv '{}' /config/log/ \;
-
-# Disable MPROTECT for grsec on java executable (for hardened kernels)
-if [ -n "${HARDENED}" -a ! -f "/tmp/.hardened" ]; then
-  echo "Disable MPROTECT for grsec on JAVA executable."
-  source /usr/local/crashplan/install.vars
-  paxctl -c "${JAVACOMMON}"
-  paxctl -m "${JAVACOMMON}"
-  touch /tmp/.hardened
-fi

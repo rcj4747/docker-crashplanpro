@@ -23,14 +23,6 @@ This will set the correct timezone. Set yours to avoid time related issues.
 -e TZ="America/Sao_Paulo"
 ```
 
-####Variable HARDENED:
-
-This will disable MPROTECT for grsec on Java executable (for hardened kernels).
-
-```
--e HARDENED="Yes"
-```
-
 ####Variable VNC_PASSWD:
 
 This will enable password protection for your webui interface.
