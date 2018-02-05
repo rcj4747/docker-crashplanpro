@@ -43,8 +43,8 @@ apt-get install -qy --force-yes --no-install-recommends \
                 wget \
                 gtk2-engines \
                 ttf-ubuntu-font-family \
-                net-tools \
-                paxctl
+                net-tools
+#                paxctl
 
 # Install window manager and x-server
 apt-get install -qy --force-yes --no-install-recommends \
