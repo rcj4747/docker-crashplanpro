@@ -8,7 +8,7 @@ MAINTAINER rcj4747
 ENV USER_ID="0" \
     GROUP_ID="0" \
     TERM="xterm" \
-    CP_VERSION="4.8.0"
+    CP_VERSION="4.9.0_1436674888490_33"
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
